@@ -152,6 +152,20 @@ let changeStepandHint = (num) =>{
             }, 2000);
             step++
             break;  
+
+        case 4:
+            cClass.style.color="black";
+            dClass.style.color="black";
+            mClass.style.color="black";
+            sClass.style.color="green";
+            stepBox.innerText="STEP 4: ANSWER-CHECK - Check your answer after you subtract.  That number should be less than the number you are dividing by.";
+            setTimeout(() => {
+                hintBox.classList.remove("affirm");
+                hintBox.innerText= "Is "+ans+" < "+a+" ?"+ "\n If not, there are more groups of "+a+" in "+xFactor+".";
+                inputBox.style.display="flex";
+            }, 2000);
+            step++
+            break; 
         
 
     }
