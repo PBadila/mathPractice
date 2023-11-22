@@ -15,6 +15,9 @@ let cClass = document.querySelector(".cClass");
 let iconBox = document.querySelector(".iconBox");
 let icons = document.querySelector(".icons");
 let num1 = document.getElementById("num1");
+let inputBox = document.querySelector(".inputBox");
+let enterAns = document.querySelector(".enterAns");
+
 
 
 let numProb = 10;
@@ -30,6 +33,7 @@ let affirmationArray=["You are so amazing!","You are a math genius!","Okay! I se
 let affirmation;
 let backColor;
 let clickNum=0;
+let ans=0;
 
 let colorCheck= (num,i) =>{
     console.log("Num= "+num+ " i= "+i)
@@ -148,7 +152,7 @@ circleOption1.addEventListener('click', () =>{
         setTimeout(() => {
             hintBox.classList.remove("affirm");
             hintBox.innerText= "\n So how many "+a+"'s are in "+c[0]+"?"+ " \n How many times can "+a+ " go into " + c[0]+"?";
-            num1.style.display="block";
+            inputBox.style.display="flex";
         }, 2000);
         
     }else{
@@ -171,17 +175,21 @@ circleOption2.addEventListener('click', () =>{
             iconBox.appendChild(img);
             
         }
-        num1.style.display="block";
+        inputBox.style.display="flex";
     }else{
         hintBox.innerText="Are you sure? "+ a + " can go into " +c[0]+c[1] + " but if it can go into "+ c[0]+ ", then you should just circle that.";
     }
  
 })
 
-// icons.addEventListener('click',() =>{
-    
-//     icons.style.backgroundColor=colorCheck();
-// })
+enterAns.addEventListener('click', ()=>{
+    ans=Number(num1.value);
+    console.log(ans);
+    num1.value="";
+
+})
+
+
 
 
 

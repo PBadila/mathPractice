@@ -88,12 +88,25 @@ body{
 }
 
 #num1{
-    width:5%;
+    width:30%;
     font-size:33px;
     margin-left:auto;
     margin-right:auto;
     margin-top:10px;
     margin-bottom:10px;
-
+}
+.inputBox{
     display:none;
+    flex-direction: row;
+    justify-content: center;
+    width:30%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.enterAns{
+    height:40px;
+    width:70px;
+    margin-top:10px;
+    margin-bottom:10px;
 }
