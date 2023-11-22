@@ -12,15 +12,18 @@ let d3 = document.querySelector(".d3");
 let hintBox = document.querySelector(".hintBox");
 let stepBox = document.querySelector(".stepBox");
 let cClass = document.querySelector(".cClass");
+let dClass = document.querySelector(".dClass");
+let mClass = document.querySelector(".mClass");
 let iconBox = document.querySelector(".iconBox");
 let icons = document.querySelector(".icons");
 let num1 = document.getElementById("num1");
 let inputBox = document.querySelector(".inputBox");
 let enterAns = document.querySelector(".enterAns");
 let topAns = document.querySelector(".topAns");
+let multAns = document.querySelector(".multAns");
 
 
-
+//variables
 let numProb = 10;
 let probCount = 0;
 let a=0;
@@ -32,11 +35,18 @@ let x3=0;
 let bHighlight=0;
 let affirmationArray=["You are so amazing!","You are a math genius!","Okay! I see you!", "Brilliant...Absolutely Brilliant!", "So....you know you're super smart, right?"];
 let affirmation;
+let helper;
+let helperArray=["Hmmmm..Let's think about that...","Almost.  You're so smart, try it again - I know you'll get it.","Wellllllllll.....Not quite, but you're awesome!","Try again. You got this!!"];
 let backColor;
 let clickNum=0;
 let ans=0;
 let numCircled=0;
+let step=0;
+ 
 
+//functions
+
+//this function sets the color for the border around the icons to create "sets" based on the divisor. This will only be done in the 10 example problems, not the do it yourself problems
 let colorCheck= (num,i) =>{
     console.log("Num= "+num+ " i= "+i)
     //the additional condition using num ensures that it is a complete set of 9 getting colored and any remainders will not be
@@ -66,15 +76,13 @@ let colorCheck= (num,i) =>{
     if(i>(a*8) && i <= (a*9) && (num/a >=9)){
     backColor="green";
     }else{
+        //this way any leftovers/remainders will not be included in a color set
         backColor="transparent";
-
     }
-    
     return backColor;
-
 }
 
-
+//this funtion randomly selects an affirmation
 let getAffirmation= () => {
     let randomNum = Math.floor(Math.random() * affirmationArray.length-1)+1;
     console.log("affirmation num = " +randomNum)
@@ -82,6 +90,67 @@ let getAffirmation= () => {
     return affirmation;
 }
 
+//this funtion randomly selects a helper statement
+let getHelper= () => {
+    let randomNum = Math.floor(Math.random() * helperArray.length-1)+1;
+    console.log("affirmation num = " +randomNum)
+    helper=helperArray[randomNum];
+    return helper;
+}
+
+//this function changes the step div instructions and highlights the proper step in the acronymn
+//num is x1 or x2
+let changeStepandHint = (num) =>{
+    console.log("Step: "+step);
+    stepBox.innerText="";
+    switch (step){
+        case 0:
+            cClass.style.color="green";
+            stepBox.innerText="STEP 1: CIRCLE - Circle what you are going to divide by "+ a+"."
+            stepBox.style.visibility="visible";
+            step++
+            break;
+        case 1:
+            cClass.style.color="black";
+            dClass.style.color="green";
+            stepBox.innerText="STEP 2: DIVIDE - Divide the number you circled "+ num+ " by "+ a + "."+"\nWrite the answer above the last digit in your circled number.";
+            stepBox.style.visibility="visible";
+            setTimeout(() => {
+                hintBox.classList.remove("affirm");
+                hintBox.innerText= "\n So how many "+a+"'s are in "+num+"?"+ " \n How many times can "+a+ " go into " + num+"?";
+                inputBox.style.display="flex";
+            }, 2000);
+            step++
+            break;
+        case 2:
+            cClass.style.color="black";
+            dClass.style.color="black";
+            mClass.style.color="green";
+            stepBox.innerText="STEP 3: MULTIPLY - Multiply the number you just wrote on top "+ ans+" by the number you are dividing by "+a+"."+"\nThen write that answer underneath the number you circled "+num+".";
+            setTimeout(() => {
+                hintBox.classList.remove("affirm");
+                hintBox.innerText= "\n What is "+ ans+" x "+ a+" ?";
+                inputBox.style.display="flex";
+            }, 2000);
+            step++
+            break;    
+        case 3:
+            cClass.style.color="black";
+            dClass.style.color="black";
+            mClass.style.color="black";
+            sClass.style.color="green";
+            stepBox.innerText="STEP 4: SUBTRACT - Subtract the answer you wrote from the number you circled "+ num +".";
+            // stepBox.style.visibility="visible";
+            step++
+            break;  
+        
+
+    }
+}
+
+//Event Listeners
+
+//when start button is clicked
 start.addEventListener('click',()=>{
     console.log('clicked button')
     start.style.display="none";
@@ -91,6 +160,8 @@ start.addEventListener('click',()=>{
     console.log(typeof(b));
     console.log(typeof(c));
     console.log(c.length)
+    console.log("a: "+a)
+    console.log("b: "+b)
     divisor.innerText=a;
     if(c.length==2){
     d1.innerText=c[0];
@@ -104,14 +175,12 @@ start.addEventListener('click',()=>{
     }
     divProb.style.display="flex";
     setTimeout(() => {
-        cClass.style.color="green";
-        stepBox.innerText="STEP 1: CIRCLE - Circle what you are going to divide by "+ a+"."
-        stepBox.style.visibility="visible";
-    }, 2000);
+        changeStepandHint(0);
+    }, 1000);
     setTimeout(() => {
         console.log('displaying circleOptions')
         circleOptions.style.display="flex";
-    }, 1000);
+    }, 2000);
     
     switch (c.length){
         case 2: 
@@ -154,10 +223,18 @@ circleOption1.addEventListener('click', () =>{
         hintBox.classList.add("affirm");
         hintBox.innerText=  getAffirmation();
         setTimeout(() => {
-            hintBox.classList.remove("affirm");
-            hintBox.innerText= "\n So how many "+a+"'s are in "+c[0]+"?"+ " \n How many times can "+a+ " go into " + c[0]+"?";
-            inputBox.style.display="flex";
-        }, 2000);
+          changeStepandHint(Number(x1));
+        }, 1000);
+     
+        for(i=1;i<=Number(x1);i++){
+            console.log(i);
+            let img = document.createElement('img');
+            img.src="./imgs/gp.png";
+            img.classList.add("icons")
+            img.style.borderColor=colorCheck(Number(x1),i);
+            iconBox.appendChild(img);
+            
+        }
         
     }else{
         hintBox.innerText="Are you sure? Can "+a+" go into "+ c[0]+"?"
@@ -171,7 +248,18 @@ circleOption2.addEventListener('click', () =>{
         console.log("Number circled= " +numCircled);
         d1.style.color="orange";
         d2.style.color="orange";
-        hintBox.innerText=  getAffirmation() + "\n So how many "+a+"'s are in "+c[0]+c[1]+"?"+ " \n How many times can "+a+ " go into " + c[0]+c[1]+"?"
+        hintBox.classList.add("affirm");
+        hintBox.innerText=  getAffirmation();
+        setTimeout(() => {
+            changeStepandHint(Number(x2));
+          }, 1000);
+     
+        // setTimeout(() => {
+        //     hintBox.classList.remove("affirm");
+        //     hintBox.innerText= "\n So how many "+a+"'s are in "+c[1]+"?"+ " \n How many times can "+a+ " go into " + c[1]+"?";
+        //     inputBox.style.display="flex";
+        // }, 2000);
+
         for(i=1;i<=Number(x2);i++){
             console.log(i);
             let img = document.createElement('img');
@@ -189,19 +277,43 @@ circleOption2.addEventListener('click', () =>{
 })
 
 enterAns.addEventListener('click', ()=>{
+    console.log("step: "+step);
     ans=Number(num1.value);
-    console.log(ans);
+    console.log("entered ans:  "+ans);
     num1.value="";
-    console.log(numCircled/a)
-    if(ans==Math.floor((numCircled/a))){
-        console.log("correct");
-        topAns.innerText=ans;
+    switch (step){
+        case 2:
+            console.log(numCircled/a)
+            if(ans==Math.floor((numCircled/a))){
+                console.log("correct");
+                topAns.innerText=ans;
+                hintBox.innerText="";
+                hintBox.classList.add("affirm");
+                hintBox.innerText=  getAffirmation();
+                setTimeout(() => {
+                    changeStepandHint(Number(x1));
+                }, 1000);
+            }else{
+                console.log("incorrect");
+                    
+            }
+            break;
+        //answer to multiplication question 
+        case 3:
+            console.log("Multiply step answer: "+Math.floor((numCircled/a))*a);
+            if(ans==Math.floor((numCircled/a))*a){
+                console.log("correct");
+                multAns.innerText="-  "+ans;
+            }else{
+                console.log("incorrect");
+            }
+            break;
+        }
 
-    }else{
-        console.log("incorrect");
-    }
 
 })
+
+
 
 
 

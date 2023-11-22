@@ -16,12 +16,17 @@ body{
 .leftSide{
     width:50%;
     height:100%;
-    background-color: brown;
+    /* background-color: brown; */
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .rightSide{
     width:50%;
     height:100%;
-    background-color: green;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .pracType{
     width:50%;
@@ -50,6 +55,7 @@ body{
     margin-top:30px;
     margin-bottom:50px;
     visibility:hidden;
+    background-color:orange;
 }
 .divProb{
     width:40%;
@@ -137,5 +143,14 @@ body{
     font-size:40px;
     position:absolute;
     top:15%;
-    left:59%;
+    left:74%;
+}
+
+.multAns{
+    /* background-color:green; */
+    font-size:40px;
+    position:absolute;
+    top: 30%;
+    left:69.5%;
+    border-bottom:2px black solid;
 }
