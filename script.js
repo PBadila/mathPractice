@@ -17,6 +17,7 @@ let icons = document.querySelector(".icons");
 let num1 = document.getElementById("num1");
 let inputBox = document.querySelector(".inputBox");
 let enterAns = document.querySelector(".enterAns");
+let topAns = document.querySelector(".topAns");
 
 
 
@@ -34,6 +35,7 @@ let affirmation;
 let backColor;
 let clickNum=0;
 let ans=0;
+let numCircled=0;
 
 let colorCheck= (num,i) =>{
     console.log("Num= "+num+ " i= "+i)
@@ -146,6 +148,8 @@ start.addEventListener('click',()=>{
 circleOption1.addEventListener('click', () =>{
     if(a<=Number(c[0])){
         circleOptions.style.display="none";
+        numCircled=Number(x1);
+        console.log(numCircled);
         d1.style.color="orange";
         hintBox.classList.add("affirm");
         hintBox.innerText=  getAffirmation();
@@ -163,6 +167,8 @@ circleOption1.addEventListener('click', () =>{
 circleOption2.addEventListener('click', () =>{
     if(a>Number(c[0])){
         circleOptions.style.display="none";
+        numCircled=Number(x2);
+        console.log("Number circled= " +numCircled);
         d1.style.color="orange";
         d2.style.color="orange";
         hintBox.innerText=  getAffirmation() + "\n So how many "+a+"'s are in "+c[0]+c[1]+"?"+ " \n How many times can "+a+ " go into " + c[0]+c[1]+"?"
@@ -186,6 +192,14 @@ enterAns.addEventListener('click', ()=>{
     ans=Number(num1.value);
     console.log(ans);
     num1.value="";
+    console.log(numCircled/a)
+    if(ans==Math.floor((numCircled/a))){
+        console.log("correct");
+        topAns.innerText=ans;
+
+    }else{
+        console.log("incorrect");
+    }
 
 })
 

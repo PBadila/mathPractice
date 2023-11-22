@@ -31,10 +31,13 @@ body{
     align-self: center;
     text-align: center;
     margin-top:30px;
-    margin-bottom:30px;
+    margin-bottom:50px;
     visibility:hidden;
 }
 .divProb{
+    width:40%;
+    /* background-color:blue; */
+    align-self:center;
     display:none;
     flex-direction: row;
     justify-content: center;
@@ -109,4 +112,12 @@ body{
     width:70px;
     margin-top:10px;
     margin-bottom:10px;
+}
+
+.topAns{
+    /* background-color:green; */
+    font-size:40px;
+    position:absolute;
+    top:37%;
+    left:49%;
 }
