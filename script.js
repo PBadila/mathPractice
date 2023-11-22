@@ -14,6 +14,8 @@ let stepBox = document.querySelector(".stepBox");
 let cClass = document.querySelector(".cClass");
 let dClass = document.querySelector(".dClass");
 let mClass = document.querySelector(".mClass");
+let sClass = document.querySelector(".sClass");
+let bClass = document.querySelector(".bClass");
 let iconBox = document.querySelector(".iconBox");
 let icons = document.querySelector(".icons");
 let num1 = document.getElementById("num1");
@@ -42,6 +44,8 @@ let clickNum=0;
 let ans=0;
 let numCircled=0;
 let step=0;
+//this will allow the changeStep function to know x1 or x2
+xFactor=0;
  
 
 //functions
@@ -140,7 +144,11 @@ let changeStepandHint = (num) =>{
             mClass.style.color="black";
             sClass.style.color="green";
             stepBox.innerText="STEP 4: SUBTRACT - Subtract the answer you wrote from the number you circled "+ num +".";
-            // stepBox.style.visibility="visible";
+            setTimeout(() => {
+                hintBox.classList.remove("affirm");
+                hintBox.innerText= "\n What is "+ num+" - "+ ans+" ?";
+                inputBox.style.display="flex";
+            }, 2000);
             step++
             break;  
         
@@ -216,6 +224,7 @@ start.addEventListener('click',()=>{
 
 circleOption1.addEventListener('click', () =>{
     if(a<=Number(c[0])){
+        xFactor=Number(x1);
         circleOptions.style.display="none";
         numCircled=Number(x1);
         console.log(numCircled);
@@ -223,7 +232,7 @@ circleOption1.addEventListener('click', () =>{
         hintBox.classList.add("affirm");
         hintBox.innerText=  getAffirmation();
         setTimeout(() => {
-          changeStepandHint(Number(x1));
+          changeStepandHint(xFactor);
         }, 1000);
      
         for(i=1;i<=Number(x1);i++){
@@ -231,7 +240,7 @@ circleOption1.addEventListener('click', () =>{
             let img = document.createElement('img');
             img.src="./imgs/gp.png";
             img.classList.add("icons")
-            img.style.borderColor=colorCheck(Number(x1),i);
+            img.style.borderColor=colorCheck(xFactor,i);
             iconBox.appendChild(img);
             
         }
@@ -243,6 +252,7 @@ circleOption1.addEventListener('click', () =>{
 
 circleOption2.addEventListener('click', () =>{
     if(a>Number(c[0])){
+        xFactor=Number(x2);
         circleOptions.style.display="none";
         numCircled=Number(x2);
         console.log("Number circled= " +numCircled);
@@ -251,7 +261,7 @@ circleOption2.addEventListener('click', () =>{
         hintBox.classList.add("affirm");
         hintBox.innerText=  getAffirmation();
         setTimeout(() => {
-            changeStepandHint(Number(x2));
+            changeStepandHint(xFactor);
           }, 1000);
      
         // setTimeout(() => {
@@ -265,7 +275,7 @@ circleOption2.addEventListener('click', () =>{
             let img = document.createElement('img');
             img.src="./imgs/gp.png";
             img.classList.add("icons")
-            img.style.borderColor=colorCheck(Number(x2),i);
+            img.style.borderColor=colorCheck(xFactor,i);
             iconBox.appendChild(img);
             
         }
@@ -291,7 +301,7 @@ enterAns.addEventListener('click', ()=>{
                 hintBox.classList.add("affirm");
                 hintBox.innerText=  getAffirmation();
                 setTimeout(() => {
-                    changeStepandHint(Number(x1));
+                    changeStepandHint(xFactor);
                 }, 1000);
             }else{
                 console.log("incorrect");
@@ -299,11 +309,37 @@ enterAns.addEventListener('click', ()=>{
             }
             break;
         //answer to multiplication question 
+        //TO DO: go back and use classes to position answer based on x1 or x2, do same for division step
         case 3:
             console.log("Multiply step answer: "+Math.floor((numCircled/a))*a);
             if(ans==Math.floor((numCircled/a))*a){
                 console.log("correct");
                 multAns.innerText="-  "+ans;
+                hintBox.innerText="";
+                hintBox.classList.add("affirm");
+                hintBox.innerText=  getAffirmation();
+                setTimeout(() => {
+                    changeStepandHint(xFactor);
+                }, 1000);
+            }else{
+                console.log("incorrect");
+            }
+            break;
+        //answer to subtraction question 
+        case 4:
+            console.log("ans = "+ans);
+            console.log("Subtraction step answer: "+ (xFactor-(Math.floor((numCircled/a))*a)));
+            console.log((Math.floor((numCircled/a))*a));
+            console.log("xFactor = "+xFactor);
+            if(ans==xFactor-(Math.floor((numCircled/a))*a)){
+                console.log("correct");
+                // multAns.innerText="-  "+ans;
+                hintBox.innerText="";
+                hintBox.classList.add("affirm");
+                hintBox.innerText=  getAffirmation();
+                setTimeout(() => {
+                    changeStepandHint(xFactor);
+                }, 1000);
             }else{
                 console.log("incorrect");
             }
