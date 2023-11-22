@@ -8,35 +8,41 @@
 </head>
 <body>
     <h1 class="pracType">Long-Division Practice</h1>
-    <div class="acronymn">
-        <span class="cClass">C</span>
-        <span class="cClass">D</span>
-        <span class="cClass">M</span>
-        <span class="cClass">S</span>
-        <span class="cClass">B</span>
-    </div>
-    <button class="start">Start</button>
-    <div class="stepBox"></div>
-    <div class="divProb">
-        <div class="divisor"></div>
-        <div class="dividend">
-            <span class="d1"></span>
-            <span class="d2"></span>
-            <span class="d3"></span>
+    <div class="mainContainer">
+        <div class="leftSide">
+            <div class="acronymn">
+                <span class="cClass">C</span>
+                <span class="cClass">D</span>
+                <span class="cClass">M</span>
+                <span class="cClass">S</span>
+                <span class="cClass">B</span>
+            </div>
+            <button class="start">Start</button>
+            <div class="stepBox"></div>
+            <div class="circleOptions">
+                <div class="circleOption1 cO"></div>
+                <div class="circleOption2 cO"></div>
+                <div class="circleOption3 cO"></div>
+            </div>
+            <div class="hintBox"></div>
+            <div class=inputBox>
+                <input type="text" id="num1" name="num1"/>
+                <button class="enterAns">Enter</button>
+            </div>
+            <div class="iconBox"></div>
         </div>
-    </div>
-    <div class="topAns"></div>
-    <div class="circleOptions">
-        <div class="circleOption1 cO"></div>
-        <div class="circleOption2 cO"></div>
-        <div class="circleOption3 cO"></div>
-    </div>
-    <div class="hintBox"></div>
-    <div class=inputBox>
-        <input type="text" id="num1" name="num1"/>
-        <button class="enterAns">Enter</button>
-    </div>
-    <div class="iconBox"></div>
+        <div class="rightSide">
+            <div class="divProb">
+                <div class="divisor"></div>
+                <div class="dividend">
+                    <span class="d1"></span>
+                    <span class="d2"></span>
+                    <span class="d3"></span>
+                </div>
+            </div>
+            <div class="topAns"></div>
+        </div>
+   
     <script src="script.js"></script>
 </body>
 </html>
