@@ -16,6 +16,7 @@ let dClass = document.querySelector(".dClass");
 let mClass = document.querySelector(".mClass");
 let sClass = document.querySelector(".sClass");
 let bClass = document.querySelector(".bClass");
+let aClass = document.querySelector(".aClass");
 let iconBox = document.querySelector(".iconBox");
 let icons = document.querySelector(".icons");
 let num1 = document.getElementById("num1");
