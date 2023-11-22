@@ -1,0 +1,99 @@
+body{
+    width:100%;
+    height:100%;
+    /* background-color:red; */
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+.pracType{
+    width:50%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    /* background-color:blue; */
+    
+}
+
+.acronymn{
+    font-size:44px;
+    text-align:center;
+}
+
+.start{
+    margin-right:auto;
+    margin-left:auto;
+    /* background-color:purple; */
+}
+
+.stepBox{
+    width:80%;
+    align-self: center;
+    text-align: center;
+    margin-top:30px;
+    margin-bottom:30px;
+    visibility:hidden;
+}
+.divProb{
+    display:none;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.divisor{
+    font-size:40px;
+}
+.dividend{
+    border-left:3px black solid;
+    border-top:3px black solid;
+    margin-left:15px;
+    font-size:40px;
+}
+.circleOptions{
+    display:none;
+    flex-direction: row;
+    justify-content: center;
+    margin-top:20px;
+
+}
+
+.cO{
+    margin:10px;
+    background-color:black;
+    color:white;
+    border-radius:5px;
+    padding:5px;
+}
+.iconBox{
+    width:100%;
+}
+
+.icons{
+    margin-left:20px;
+    margin-right:20px;
+    margin-top:10px;
+    margin-bottom:10px;
+    border:3px solid;
+    border-radius:50%;
+    padding:3px;
+}
+
+.affirm{
+    font-size: 44px;
+    color:magenta;
+}
+
+.hintBox{
+    text-align:center;
+}
+
+#num1{
+    width:5%;
+    font-size:33px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:10px;
+    margin-bottom:10px;
+
+    display:none;
+}
