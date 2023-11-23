@@ -57,11 +57,18 @@ body{
     visibility:hidden;
     background-color:orange;
 }
+
+.divDiv{
+    display:none;
+    flex-direction:column;
+    background-color:pink
+
+}
 .divProb{
     width:40%;
     /* background-color:blue; */
     align-self:center;
-    display:none;
+    display:flex;
     flex-direction: row;
     justify-content: center;
     margin-top:30px;
@@ -143,8 +150,17 @@ body{
     /* background-color:green; */
     font-size:40px;
     position:absolute;
+   
+}
+.topAnsX1{
+   /*Goes over first number*/
     top:15%;
     left:74%;
+}
+.topAnsX2{
+    /* Goes over second number */
+    top:15%;
+    left:76.5%;
 }
 
 .multAns{
@@ -152,7 +168,8 @@ body{
     font-size:40px;
     position:absolute;
     top: 30%;
-    left:70%;
+    /*works for double digit answer*/
+    left:71%;
     border-bottom:2px black solid;
     letter-spacing:6px;
 }
@@ -162,7 +179,8 @@ body{
     font-size:40px;
     position:absolute;
     top: 40%;
-    left:74%;
+    /*works for single digit answer*/
+    left:76%;
    
    
 }
