@@ -24,6 +24,7 @@ let inputBox = document.querySelector(".inputBox");
 let enterAns = document.querySelector(".enterAns");
 let topAns = document.querySelector(".topAns");
 let multAns = document.querySelector(".multAns");
+let subAns = document.querySelector(".subAns");
 
 
 //variables
@@ -348,7 +349,7 @@ enterAns.addEventListener('click', ()=>{
             console.log("xFactor = "+xFactor);
             if(ans==xFactor-(Math.floor((numCircled/a))*a)){
                 console.log("correct");
-                // multAns.innerText="-  "+ans;
+                subAns.innerText=ans;
                 hintBox.innerText="";
                 hintBox.classList.add("affirm");
                 hintBox.innerText=  getAffirmation();
