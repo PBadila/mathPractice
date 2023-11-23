@@ -25,6 +25,7 @@ let enterAns = document.querySelector(".enterAns");
 let topAns = document.querySelector(".topAns");
 let multAns = document.querySelector(".multAns");
 let subAns = document.querySelector(".subAns");
+let divDiv = document.querySelector(".divDiv");
 
 
 //variables
@@ -112,13 +113,22 @@ let changeStepandHint = (num) =>{
     switch (step){
         case 0:
             cClass.style.color="green";
+            dClass.style.color="black";
+            mClass.style.color="black";
+            sClass.style.color="black";
+            aClass.style.color="black";
+            bClass.style.color="black";
             stepBox.innerText="STEP 1: CIRCLE - Circle what you are going to divide by "+ a+"."
             stepBox.style.visibility="visible";
             step++
-            break;
+        break;
         case 1:
             cClass.style.color="black";
             dClass.style.color="green";
+            mClass.style.color="black";
+            sClass.style.color="black";
+            aClass.style.color="black";
+            bClass.style.color="black";
             stepBox.innerText="STEP 2: DIVIDE - Divide the number you circled "+ num+ " by "+ a + "."+"\nWrite the answer above the last digit in your circled number.";
             stepBox.style.visibility="visible";
             setTimeout(() => {
@@ -127,11 +137,14 @@ let changeStepandHint = (num) =>{
                 inputBox.style.display="flex";
             }, 2000);
             step++
-            break;
+        break;
         case 2:
             cClass.style.color="black";
             dClass.style.color="black";
             mClass.style.color="green";
+            sClass.style.color="black";
+            aClass.style.color="black";
+            bClass.style.color="black";
             stepBox.innerText="STEP 3: MULTIPLY - Multiply the number you just wrote on top "+ ans+" by the number you are dividing by "+a+"."+"\nThen write that answer underneath the number you circled "+num+".";
             setTimeout(() => {
                 hintBox.classList.remove("affirm");
@@ -145,6 +158,8 @@ let changeStepandHint = (num) =>{
             dClass.style.color="black";
             mClass.style.color="black";
             sClass.style.color="green";
+            aClass.style.color="black";
+            bClass.style.color="black";
             stepBox.innerText="STEP 4: SUBTRACT - Subtract the answer you wrote from the number you circled "+ num +".";
             setTimeout(() => {
                 hintBox.classList.remove("affirm");
@@ -152,21 +167,39 @@ let changeStepandHint = (num) =>{
                 inputBox.style.display="flex";
             }, 2000);
             step++
-            break;  
+        break;  
 
         case 4:
             cClass.style.color="black";
             dClass.style.color="black";
             mClass.style.color="black";
-            sClass.style.color="green";
-            stepBox.innerText="STEP 4: ANSWER-CHECK - Check your answer after you subtract.  That number should be less than the number you are dividing by.";
+            sClass.style.color="black";
+            aClass.style.color="green";
+            bClass.style.color="black";
+            stepBox.innerText="STEP 5: ANSWER-CHECK - Check your answer after you subtract.  That number should be less than the number you are dividing by.";
             setTimeout(() => {
                 hintBox.classList.remove("affirm");
-                hintBox.innerText= "Is "+ans+" < "+a+" ?"+ "\n If not, there are more groups of "+a+" in "+xFactor+".";
+                hintBox.innerText= "Is "+ans+" < "+a+" ?"+"(y or n)"+ "\n If not, there are more groups of "+a+" in "+xFactor+".";
                 inputBox.style.display="flex";
             }, 2000);
             step++
-            break; 
+        break; 
+
+        case 5:
+            cClass.style.color="black";
+            dClass.style.color="black";
+            mClass.style.color="black";
+            sClass.style.color="black";
+            aClass.style.color="black";
+            bClass.style.color="green";
+            stepBox.innerText="STEP 6: BRING DOWNK - If there is a number to bring down, bring it down next to your subtraction answer."+"\nIf not, you're done.";
+            setTimeout(() => {
+                hintBox.classList.remove("affirm");
+                hintBox.innerText= "If you are bringing a number down, enter it in the box.  If not, enter d for done!";
+                inputBox.style.display="flex";
+            }, 2000);
+            step++
+        break; 
         
 
     }
@@ -197,7 +230,7 @@ start.addEventListener('click',()=>{
         d2.innerText=c[1];
         d3.innerText=c[2]
     }
-    divProb.style.display="flex";
+    divDiv.style.display="flex";
     setTimeout(() => {
         changeStepandHint(0);
     }, 1000);
@@ -241,6 +274,8 @@ start.addEventListener('click',()=>{
 circleOption1.addEventListener('click', () =>{
     if(a<=Number(c[0])){
         xFactor=Number(x1);
+        topAns.classList.remove("topAnsX2");
+        topAns.classList.add("topAnsX1");
         circleOptions.style.display="none";
         numCircled=Number(x1);
         console.log(numCircled);
@@ -269,6 +304,8 @@ circleOption1.addEventListener('click', () =>{
 circleOption2.addEventListener('click', () =>{
     if(a>Number(c[0])){
         xFactor=Number(x2);
+        topAns.classList.remove("topAnsX1");
+        topAns.classList.add("topAnsX2");
         circleOptions.style.display="none";
         numCircled=Number(x2);
         console.log("Number circled= " +numCircled);
@@ -312,6 +349,7 @@ enterAns.addEventListener('click', ()=>{
             console.log(numCircled/a)
             if(ans==Math.floor((numCircled/a))){
                 console.log("correct");
+                
                 topAns.innerText=ans;
                 hintBox.innerText="";
                 hintBox.classList.add("affirm");
@@ -358,6 +396,23 @@ enterAns.addEventListener('click', ()=>{
                 }, 1000);
             }else{
                 console.log("incorrect");
+            }
+            break;
+        //answer to anwer-check question 
+        case 4:
+            console.log("ans = "+ans);
+        
+            if(ans=="y"){
+                console.log("correct");
+                
+                hintBox.innerText="";
+                hintBox.classList.add("affirm");
+                hintBox.innerText=  getAffirmation();
+                setTimeout(() => {
+                    changeStepandHint(xFactor);
+                }, 1000);
+            }else{
+                console.log("uh oh");
             }
             break;
         }
