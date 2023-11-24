@@ -420,24 +420,46 @@ enterAns.addEventListener('click', ()=>{
                 console.log("incorrect");
             }
             break;
-        //answer to anwer-check question 
-        case 4:
+        //answer to bring down question 
+        case 5:
             console.log("ans = "+ans);
-        
-            if(ans=="y"){
-                console.log("correct");
-                
-                hintBox.innerText="";
-                hintBox.classList.add("affirm");
-                hintBox.innerText=  getAffirmation();
-                setTimeout(() => {
-                    changeStepandHint(xFactor);
-                }, 1000);
-              
-
+            console.log(xFactor);
+            console.log(typeof(xFactor));
+            if(xFactor.toString().length=1){
+                //we are only on the first digit, so bring down the second
+                if(ans.toString()==d2.innerText){
+                    console.log("correct");
+                    
+                    hintBox.innerText="";
+                    hintBox.classList.add("affirm");
+                    hintBox.innerText=  getAffirmation();
+                    setTimeout(() => {
+                        changeStepandHint(xFactor);
+                    }, 1000);
+                  
+    
+                }else{
+                    console.log("uh oh");
+                }
             }else{
-                console.log("uh oh");
+                //we are on the second digit, so bring down the third
+                if(ans.toString()==d3.innerText){
+                    console.log("correct");
+                    
+                    hintBox.innerText="";
+                    hintBox.classList.add("affirm");
+                    hintBox.innerText=  getAffirmation();
+                    setTimeout(() => {
+                        changeStepandHint(xFactor);
+                    }, 1000);
+                  
+    
+                }else{
+                    console.log("uh oh");
+                }
             }
+        
+        
             break;
         }
 
