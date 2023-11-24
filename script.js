@@ -179,9 +179,22 @@ let changeStepandHint = (num) =>{
             stepBox.innerText="STEP 5: ANSWER-CHECK - Check your answer after you subtract.  That number should be less than the number you are dividing by.";
             setTimeout(() => {
                 hintBox.classList.remove("affirm");
-                hintBox.innerText= "Is "+ans+" < "+a+" ?"+"(y or n)"+ "\n If not, there are more groups of "+a+" in "+xFactor+".";
-                inputBox.style.display="flex";
+                hintBox.innerText= "Is "+ans+" < "+a+" ?"+ "\n If not, there are more groups of "+a+" in "+xFactor+".";
             }, 2000);
+            setTimeout(() => {
+            cClass.style.color="black";
+            dClass.style.color="black";
+            mClass.style.color="black";
+            sClass.style.color="black";
+            aClass.style.color="black";
+            bClass.style.color="green";
+            stepBox.innerText="STEP 6: BRING DOWN - If there is a number to bring down, bring it down next to your subtraction answer."+"\nIf not, you're done.";
+            
+            hintBox.classList.remove("affirm");
+            hintBox.innerText= "If you are bringing a number down, enter it in the box.  If not, enter d for done!";
+            inputBox.style.display="flex";}, 7500);
+         
+
             step++
         break; 
 
@@ -192,7 +205,7 @@ let changeStepandHint = (num) =>{
             sClass.style.color="black";
             aClass.style.color="black";
             bClass.style.color="green";
-            stepBox.innerText="STEP 6: BRING DOWNK - If there is a number to bring down, bring it down next to your subtraction answer."+"\nIf not, you're done.";
+            stepBox.innerText="STEP 6: BRING DOWN - If there is a number to bring down, bring it down next to your subtraction answer."+"\nIf not, you're done.";
             setTimeout(() => {
                 hintBox.classList.remove("affirm");
                 hintBox.innerText= "If you are bringing a number down, enter it in the box.  If not, enter d for done!";
@@ -276,6 +289,10 @@ circleOption1.addEventListener('click', () =>{
         xFactor=Number(x1);
         topAns.classList.remove("topAnsX2");
         topAns.classList.add("topAnsX1");
+        subAns.classList.remove("subAnsX2");
+        subAns.classList.add("subAnsX1");
+        multAns.classList.remove("multAnsX2");
+        multAns.classList.add("multAnsX1");
         circleOptions.style.display="none";
         numCircled=Number(x1);
         console.log(numCircled);
@@ -306,6 +323,10 @@ circleOption2.addEventListener('click', () =>{
         xFactor=Number(x2);
         topAns.classList.remove("topAnsX1");
         topAns.classList.add("topAnsX2");
+        subAns.classList.remove("subAnsX1");
+        subAns.classList.add("subAnsX2");
+        multAns.classList.remove("multAnsX1");
+        multAns.classList.add("multAnsX2");
         circleOptions.style.display="none";
         numCircled=Number(x2);
         console.log("Number circled= " +numCircled);
@@ -344,6 +365,7 @@ enterAns.addEventListener('click', ()=>{
     ans=Number(num1.value);
     console.log("entered ans:  "+ans);
     num1.value="";
+    inputBox.style.display="none";
     switch (step){
         case 2:
             console.log(numCircled/a)
@@ -411,6 +433,8 @@ enterAns.addEventListener('click', ()=>{
                 setTimeout(() => {
                     changeStepandHint(xFactor);
                 }, 1000);
+              
+
             }else{
                 console.log("uh oh");
             }

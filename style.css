@@ -155,7 +155,7 @@ body{
 .topAnsX1{
    /*Goes over first number*/
     top:15%;
-    left:74%;
+    left:75%;
 }
 .topAnsX2{
     /* Goes over second number */
@@ -164,23 +164,37 @@ body{
 }
 
 .multAns{
-    /* background-color:green; */
     font-size:40px;
     position:absolute;
-    top: 30%;
-    /*works for double digit answer*/
-    left:71%;
+    left:73%;
     border-bottom:2px black solid;
+}
+
+.multAnsX1{
+    top: 30%;
+    left:73%;
+}
+
+.multAnsX2{
     letter-spacing:6px;
+    top: 30%;
+    left:71%;
+    
 }
 
 .subAns{
     /* background-color:green; */
     font-size:40px;
     position:absolute;
+   
+}
+
+.subAnsX1{
     top: 40%;
-    /*works for single digit answer*/
+    left:75%;
+}
+
+.subAnsX2{
+    top: 40%;
     left:76%;
-   
-   
 }
