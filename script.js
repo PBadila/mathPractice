@@ -238,6 +238,15 @@ let changeStepandHint = (num) =>{
                 inputBox.style.display="flex";
             }, 2000);
             step++ 
+            let pic = getImages();
+            for(i=1;i<=num;i++){
+                console.log(i);
+                let img = document.createElement('img');
+                img.src=pic;
+                img.classList.add("icons")
+                img.style.borderColor=colorCheck(num,i);
+                iconBox.appendChild(img);
+            };
         }, 2500);
         break;
 
@@ -525,6 +534,7 @@ enterAns.addEventListener('click', ()=>{
                 hintBox.innerText=  getAffirmation();
                 setTimeout(() => {
                     changeStepandHint(xFactor);
+                    iconBox.innerHTML="";
                 }, 1000);
             }else{
                 console.log("incorrect");
