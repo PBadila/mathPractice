@@ -26,6 +26,8 @@ let topAns = document.querySelector(".topAns");
 let multAns = document.querySelector(".multAns");
 let subAns = document.querySelector(".subAns");
 let divDiv = document.querySelector(".divDiv");
+let multLine = document.querySelector(".multLine");
+let bdArrow = document.querySelector(".bdArrow");
 
 
 //variables
@@ -291,8 +293,8 @@ circleOption1.addEventListener('click', () =>{
         topAns.classList.add("topAnsX1");
         subAns.classList.remove("subAnsX2");
         subAns.classList.add("subAnsX1");
-        multAns.classList.remove("multAnsX2");
-        multAns.classList.add("multAnsX1");
+        multLine.classList.remove("multAnsX2");
+        multLine.classList.add("multAnsX1");
         circleOptions.style.display="none";
         numCircled=Number(x1);
         console.log(numCircled);
@@ -325,8 +327,8 @@ circleOption2.addEventListener('click', () =>{
         topAns.classList.add("topAnsX2");
         subAns.classList.remove("subAnsX1");
         subAns.classList.add("subAnsX2");
-        multAns.classList.remove("multAnsX1");
-        multAns.classList.add("multAnsX2");
+        multLine.classList.remove("multAnsX1");
+        multLine.classList.add("multAnsX2");
         circleOptions.style.display="none";
         numCircled=Number(x2);
         console.log("Number circled= " +numCircled);
@@ -390,7 +392,7 @@ enterAns.addEventListener('click', ()=>{
             console.log("Multiply step answer: "+Math.floor((numCircled/a))*a);
             if(ans==Math.floor((numCircled/a))*a){
                 console.log("correct");
-                multAns.innerText="-  "+ans;
+                multAns.innerText="-"+ans;
                 hintBox.innerText="";
                 hintBox.classList.add("affirm");
                 hintBox.innerText=  getAffirmation();
@@ -425,7 +427,8 @@ enterAns.addEventListener('click', ()=>{
             console.log("ans = "+ans);
             console.log(xFactor);
             console.log(typeof(xFactor));
-            if(xFactor.toString().length=1){
+            if(xFactor.toString().length==1){
+                console.log("length xFactor= " +xFactor.toString().length)
                 //we are only on the first digit, so bring down the second
                 if(ans.toString()==d2.innerText){
                     console.log("correct");
@@ -436,6 +439,9 @@ enterAns.addEventListener('click', ()=>{
                     setTimeout(() => {
                         changeStepandHint(xFactor);
                     }, 1000);
+                    console.log("show arrow");
+                    bdArrow.style.visibility="visible";
+                    subAns.textContent += d2.textContent;
                   
     
                 }else{
@@ -443,6 +449,8 @@ enterAns.addEventListener('click', ()=>{
                 }
             }else{
                 //we are on the second digit, so bring down the third
+                console.log( ans.toString());
+                console.log(d3.innerText);
                 if(ans.toString()==d3.innerText){
                     console.log("correct");
                     
@@ -452,7 +460,8 @@ enterAns.addEventListener('click', ()=>{
                     setTimeout(() => {
                         changeStepandHint(xFactor);
                     }, 1000);
-                  
+                    bdArrow.style.visibility="visible";
+                    subAns.textContent += d3.textContent;
     
                 }else{
                     console.log("uh oh");
