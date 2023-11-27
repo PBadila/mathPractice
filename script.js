@@ -51,6 +51,8 @@ let numCircled=0;
 let step=0;
 //this will allow the changeStep function to know x1 or x2
 xFactor=0;
+let item;
+itemArray=["./imgs/bird.png","./imgs/bubbleTea.png","./imgs/cat.png","./imgs/coffee.png","./imgs/cookie.png","./imgs/football.png","./imgs/gp.png","./imgs/gummy.png","./imgs/makeup.png","./imgs/orange.png","./imgs/ramen.png",];
  
 
 //functions
@@ -105,6 +107,15 @@ let getHelper= () => {
     console.log("affirmation num = " +randomNum)
     helper=helperArray[randomNum];
     return helper;
+}
+
+//this function randomly selects the image to display with the math problem
+let getImages = () => {
+    let randomNum = Math.floor(Math.random() * 11);
+    console.log("image num = "+ randomNum);
+    item = itemArray[randomNum]
+    console.log(item);
+    return item;
 }
 
 //this function changes the step div instructions and highlights the proper step in the acronymn
@@ -304,11 +315,11 @@ circleOption1.addEventListener('click', () =>{
         setTimeout(() => {
           changeStepandHint(xFactor);
         }, 1000);
-     
+        let pic = getImages();
         for(i=1;i<=Number(x1);i++){
             console.log(i);
             let img = document.createElement('img');
-            img.src="./imgs/gp.png";
+            img.src=pic;
             img.classList.add("icons")
             img.style.borderColor=colorCheck(xFactor,i);
             iconBox.appendChild(img);
@@ -339,17 +350,11 @@ circleOption2.addEventListener('click', () =>{
         setTimeout(() => {
             changeStepandHint(xFactor);
           }, 1000);
-     
-        // setTimeout(() => {
-        //     hintBox.classList.remove("affirm");
-        //     hintBox.innerText= "\n So how many "+a+"'s are in "+c[1]+"?"+ " \n How many times can "+a+ " go into " + c[1]+"?";
-        //     inputBox.style.display="flex";
-        // }, 2000);
-
+        let pic = getImages();
         for(i=1;i<=Number(x2);i++){
             console.log(i);
             let img = document.createElement('img');
-            img.src="./imgs/gp.png";
+            img.src=pic;
             img.classList.add("icons")
             img.style.borderColor=colorCheck(xFactor,i);
             iconBox.appendChild(img);
