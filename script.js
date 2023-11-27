@@ -340,7 +340,7 @@ start.addEventListener('click',()=>{
     console.log('clicked button')
     start.style.display="none";
     a=Math.floor((Math.random() * 8)+ 2);
-    b=Math.floor((Math.random() * 1000)+ 20);
+    b=Math.floor((Math.random() * 980)+ 20);
     c=b.toString();
     console.log(typeof(b));
     console.log(typeof(c));
