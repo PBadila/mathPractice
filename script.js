@@ -204,7 +204,7 @@ let changeStepandHint = (num) =>{
             stepBox.innerText="STEP 6: BRING DOWN - If there is a number to bring down, bring it down next to your subtraction answer."+"\nIf not, you're done.";
             
             hintBox.classList.remove("affirm");
-            hintBox.innerText= "If you are bringing a number down, enter it in the box.  If not, enter d for done!";
+            hintBox.innerText= "If you are bringing a number down, enter it in the box.";
             inputBox.style.display="flex";}, 7500);
          
 
@@ -212,6 +212,97 @@ let changeStepandHint = (num) =>{
         break; 
 
         case 5:
+            cClass.style.color="green";
+            dClass.style.color="black";
+            mClass.style.color="black";
+            sClass.style.color="black";
+            aClass.style.color="black";
+            bClass.style.color="black";
+            stepBox.innerText="STEP 5: CIRCLE - Back to CIRCLE. Circle what you are going to divide by "+ a+"."
+            stepBox.style.visibility="visible";
+            subAns.style.color="orange";
+            step++
+       
+        setTimeout(() => {
+            cClass.style.color="black";
+            dClass.style.color="green";
+            mClass.style.color="black";
+            sClass.style.color="black";
+            aClass.style.color="black";
+            bClass.style.color="black";
+            stepBox.innerText="STEP 2: DIVIDE - Divide the number you circled "+ num+ " by "+ a + "."+"\nWrite the answer above the last digit in your circled number.";
+            stepBox.style.visibility="visible";
+            setTimeout(() => {
+                hintBox.classList.remove("affirm");
+                hintBox.innerText= "\n So how many "+a+"'s are in "+num+"?"+ " \n How many times can "+a+ " go into " + num+"?";
+                inputBox.style.display="flex";
+            }, 2000);
+            step++ 
+        }, 2500);
+        break;
+
+        // case 6:
+            // cClass.style.color="black";
+            // dClass.style.color="green";
+            // mClass.style.color="black";
+            // sClass.style.color="black";
+            // aClass.style.color="black";
+            // bClass.style.color="black";
+            // stepBox.innerText="STEP 2: DIVIDE - Divide the number you circled "+ num+ " by "+ a + "."+"\nWrite the answer above the last digit in your circled number.";
+            // stepBox.style.visibility="visible";
+            // setTimeout(() => {
+            //     hintBox.classList.remove("affirm");
+            //     hintBox.innerText= "\n So how many "+a+"'s are in "+num+"?"+ " \n How many times can "+a+ " go into " + num+"?";
+            //     inputBox.style.display="flex";
+            // }, 2000);
+            // step++
+        // break;
+
+        case 7:
+            cClass.style.color="black";
+            dClass.style.color="black";
+            mClass.style.color="green";
+            sClass.style.color="black";
+            aClass.style.color="black";
+            bClass.style.color="black";
+            stepBox.innerText="STEP 3: MULTIPLY - Multiply the number you just wrote on top "+ ans+" by the number you are dividing by "+a+"."+"\nThen write that answer underneath the number you circled "+num+".";
+            setTimeout(() => {
+                hintBox.classList.remove("affirm");
+                hintBox.innerText= "\n What is "+ ans+" x "+ a+" ?";
+                inputBox.style.display="flex";
+            }, 2000);
+            step++
+            break; 
+
+        case 8:
+            cClass.style.color="black";
+            dClass.style.color="black";
+            mClass.style.color="black";
+            sClass.style.color="green";
+            aClass.style.color="black";
+            bClass.style.color="black";
+            stepBox.innerText="STEP 4: SUBTRACT - Subtract the answer you wrote from the number you circled "+ num +".";
+            setTimeout(() => {
+                hintBox.classList.remove("affirm");
+                hintBox.innerText= "\n What is "+ num+" - "+ ans+" ?";
+                inputBox.style.display="flex";
+            }, 2000);
+            step++
+        break;  
+
+        case 9:
+            cClass.style.color="black";
+            dClass.style.color="black";
+            mClass.style.color="black";
+            sClass.style.color="black";
+            aClass.style.color="green";
+            bClass.style.color="black";
+            stepBox.innerText="STEP 5: ANSWER-CHECK - Check your answer after you subtract.  That number should be less than the number you are dividing by.";
+            setTimeout(() => {
+                hintBox.classList.remove("affirm");
+                hintBox.innerText= "Is "+ans+" < "+a+" ?"+ "\n If not, there are more groups of "+a+" in "+xFactor+".";
+            }, 2000);
+            setTimeout(() => {
             cClass.style.color="black";
             dClass.style.color="black";
             mClass.style.color="black";
@@ -219,13 +310,15 @@ let changeStepandHint = (num) =>{
             aClass.style.color="black";
             bClass.style.color="green";
             stepBox.innerText="STEP 6: BRING DOWN - If there is a number to bring down, bring it down next to your subtraction answer."+"\nIf not, you're done.";
-            setTimeout(() => {
-                hintBox.classList.remove("affirm");
-                hintBox.innerText= "If you are bringing a number down, enter it in the box.  If not, enter d for done!";
-                inputBox.style.display="flex";
-            }, 2000);
+            
+            hintBox.classList.remove("affirm");
+            hintBox.innerText= "If you are bringing a number down, enter it in the box.";
+            inputBox.style.display="flex";}, 7500);
+         
+
             step++
         break; 
+   
         
 
     }
@@ -285,8 +378,8 @@ start.addEventListener('click',()=>{
             circleOption1.innerText="Circle "+x1;
             x2=bArray[1];
             circleOption2.innerText="Circle "+x2;
-            x3=bArray[2];
-            circleOption3.innerText="Circle "+x3;
+            // x3=bArray[2];
+            // circleOption3.innerText="Circle "+x3;
             break;
 
     }
@@ -396,6 +489,16 @@ enterAns.addEventListener('click', ()=>{
         case 3:
             console.log("Multiply step answer: "+Math.floor((numCircled/a))*a);
             if(ans==Math.floor((numCircled/a))*a){
+
+                if(numCircled.toString().length ==2){
+                    console.log("its 2 digit so repositioning");
+                    if(ans.toString().length==1){
+                        multLine.classList.add("digitOne");
+                    }else{
+                        multLine.classList.add("digitTwo");
+                    }
+                }
+
                 console.log("correct");
                 multAns.innerText="-"+ans;
                 hintBox.innerText="";
@@ -441,12 +544,17 @@ enterAns.addEventListener('click', ()=>{
                     hintBox.innerText="";
                     hintBox.classList.add("affirm");
                     hintBox.innerText=  getAffirmation();
-                    setTimeout(() => {
-                        changeStepandHint(xFactor);
-                    }, 1000);
                     console.log("show arrow");
                     bdArrow.style.visibility="visible";
                     subAns.textContent += d2.textContent;
+                    console.log(typeof(subAns.textContent));
+                    console.log(Number(subAns.textContent));
+                    setTimeout(() => {
+                        changeStepandHint(Number(subAns.textContent));
+                    }, 1000);
+                    // console.log("show arrow");
+                    // bdArrow.style.visibility="visible";
+                    // subAns.textContent += d2.textContent;
                   
     
                 }else{
@@ -462,11 +570,15 @@ enterAns.addEventListener('click', ()=>{
                     hintBox.innerText="";
                     hintBox.classList.add("affirm");
                     hintBox.innerText=  getAffirmation();
-                    setTimeout(() => {
-                        changeStepandHint(xFactor);
-                    }, 1000);
                     bdArrow.style.visibility="visible";
                     subAns.textContent += d3.textContent;
+                    console.log(typeof(subAns));
+                    console.log(Number(subAns));
+                    setTimeout(() => {
+                        changeStepandHint(Number(subAns.textContent));
+                    }, 1000);
+                    // bdArrow.style.visibility="visible";
+                    // subAns.textContent += d3.textContent;
     
                 }else{
                     console.log("uh oh");

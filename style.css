@@ -135,6 +135,16 @@ body{
     
 }
 
+.digitOne{
+    top: 30%;
+    left:44%;
+}
+
+.digitTwo{
+    top: 30%;
+    left:44%;
+}
+
 .arrowBox{
     margin-left:6px;
     align-self:flex-end;
