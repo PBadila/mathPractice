@@ -195,6 +195,7 @@ let changeStepandHint = (num) =>{
                 hintBox.innerText= "Is "+ans+" < "+a+" ?"+ "\n If not, there are more groups of "+a+" in "+xFactor+".";
             }, 2000);
             setTimeout(() => {
+            iconBox.innerHTML="";
             cClass.style.color="black";
             dClass.style.color="black";
             mClass.style.color="black";
@@ -534,7 +535,7 @@ enterAns.addEventListener('click', ()=>{
                 hintBox.innerText=  getAffirmation();
                 setTimeout(() => {
                     changeStepandHint(xFactor);
-                    iconBox.innerHTML="";
+                    // iconBox.innerHTML="";
                 }, 1000);
             }else{
                 console.log("incorrect");
