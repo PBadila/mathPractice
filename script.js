@@ -28,6 +28,8 @@ let subAns = document.querySelector(".subAns");
 let divDiv = document.querySelector(".divDiv");
 let multLine = document.querySelector(".multLine");
 let bdArrow = document.querySelector(".bdArrow");
+let mult2Ans = document.querySelector(".mult2Ans");
+let sub2Ans = document.querySelector(".sub2Ans");
 
 
 //variables
@@ -251,23 +253,6 @@ let changeStepandHint = (num) =>{
         }, 2500);
         break;
 
-        // case 6:
-            // cClass.style.color="black";
-            // dClass.style.color="green";
-            // mClass.style.color="black";
-            // sClass.style.color="black";
-            // aClass.style.color="black";
-            // bClass.style.color="black";
-            // stepBox.innerText="STEP 2: DIVIDE - Divide the number you circled "+ num+ " by "+ a + "."+"\nWrite the answer above the last digit in your circled number.";
-            // stepBox.style.visibility="visible";
-            // setTimeout(() => {
-            //     hintBox.classList.remove("affirm");
-            //     hintBox.innerText= "\n So how many "+a+"'s are in "+num+"?"+ " \n How many times can "+a+ " go into " + num+"?";
-            //     inputBox.style.display="flex";
-            // }, 2000);
-            // step++
-        // break;
-
         case 7:
             cClass.style.color="black";
             dClass.style.color="black";
@@ -294,7 +279,7 @@ let changeStepandHint = (num) =>{
             stepBox.innerText="STEP 4: SUBTRACT - Subtract the answer you wrote from the number you circled "+ num +".";
             setTimeout(() => {
                 hintBox.classList.remove("affirm");
-                hintBox.innerText= "\n What is "+ num+" - "+ ans+" ?";
+                hintBox.innerText= "\n What is "+ Number(subAns.textContent)+" - "+ ans+" ?";
                 inputBox.style.display="flex";
             }, 2000);
             step++
@@ -406,9 +391,16 @@ circleOption1.addEventListener('click', () =>{
         topAns.classList.remove("topAnsX2");
         topAns.classList.add("topAnsX1");
         subAns.classList.remove("subAnsX2");
-        subAns.classList.add("subAnsX1");
         multLine.classList.remove("multAnsX2");
-        multLine.classList.add("multAnsX1");
+        if(b<100){
+            subAns.classList.add("subAnsX1a");
+            multLine.classList.add("multAnsX1a");
+        }else{
+            subAns.classList.add("subAnsX1");
+            multLine.classList.add("multAnsX1");
+        }
+        
+        
         circleOptions.style.display="none";
         numCircled=Number(x1);
         console.log(numCircled);
@@ -440,9 +432,16 @@ circleOption2.addEventListener('click', () =>{
         topAns.classList.remove("topAnsX1");
         topAns.classList.add("topAnsX2");
         subAns.classList.remove("subAnsX1");
-        subAns.classList.add("subAnsX2");
         multLine.classList.remove("multAnsX1");
-        multLine.classList.add("multAnsX2");
+       
+        if(b<100){
+            topAns.classList.add("topAnsX2a");
+            subAns.classList.add("subAnsX2a");
+            multLine.classList.add("multAnsX2a");
+        }else{
+            subAns.classList.add("subAnsX2");
+            multLine.classList.add("multAnsX2");
+        }
         circleOptions.style.display="none";
         numCircled=Number(x2);
         console.log("Number circled= " +numCircled);
@@ -598,8 +597,53 @@ enterAns.addEventListener('click', ()=>{
         
         
             break;
-        }
 
+            case 7:
+                console.log("ans = "+ans);
+                console.log("subAns = "+Number(subAns.textContent));
+                if(ans == Math.floor(Number(subAns.textContent/a))){
+                    console.log("correct");
+                    topAns.textContent += ans;
+                    hintBox.innerText="";
+                    hintBox.classList.add("affirm");
+                    hintBox.innerText=  getAffirmation();
+                    setTimeout(() => {
+                        changeStepandHint(ans);
+                    }, 1000);
+                }
+            break;
+
+            case 8:
+                console.log("ans = "+ans);
+                if( ans = topAns.textContent[1] * a ){
+                    console.log("correct");
+                    if (ans.toString().length == 1){
+                        mult2Ans.classList.add("mult2Ansa");
+                    }
+                    else{
+                        mult2Ans.classList.add("mult2Ansb");
+                    }
+                hintBox.innerText="";
+                hintBox.classList.add("affirm");
+                hintBox.innerText=  getAffirmation();
+                setTimeout(() => {
+                    changeStepandHint(ans);
+                }, 1000);
+                mult2Ans.innerText = "-"+ans;
+                mult2Ans.style.visibility="visible";
+
+                }
+
+            case 9:
+                console.log("ans = " +ans);
+                console.log(Number(subAns.textContent));
+                let subNum = Number(mult2Ans.textContent.slice(1,mult2Ans.textContent.length));
+                console.log("subNum : "+subNum)
+                if(ans == Number(subAns.textContent) - subNum){
+                    console.log("Correct answer");
+                    sub2Ans.innerText=ans;
+                }
+    }
 
 })
 

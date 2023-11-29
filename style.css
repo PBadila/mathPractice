@@ -96,6 +96,7 @@ body{
     /* background-color:orange; */
     font-size:40px;
     position:relative;
+    letter-spacing:6px;
    
 }
 .topAnsX1{
@@ -103,11 +104,23 @@ body{
     top:45%;
     left:47%;
 }
+
+.topAnsX1a{
+    /* Goes over first number*/
+      top:45%;
+      left:47%;
+  }
 .topAnsX2{
     /* Goes over second number */
     /* top:15%; */
     left:51.5%;
 }
+
+.topAnsX2a{
+    /* Goes over first number*/
+      top:45%;
+      left:47%;
+  }
 
 .multLine{
     /* background-color: cadetblue; */
@@ -128,6 +141,11 @@ body{
     left:45%;
 }
 
+.multAnsX1a{
+    top: 30%;
+    left:47%;
+}
+
 .multAnsX2{
     letter-spacing:6px;
     top: 30%;
@@ -135,9 +153,11 @@ body{
     
 }
 
+
+
 .digitOne{
     top: 30%;
-    left:44%;
+    left:48%;
 }
 
 .digitTwo{
@@ -167,9 +187,51 @@ body{
     left:47%;
 }
 
+.subAnsX1a{
+    top: 0%;
+    left:49%;
+}
+
 .subAnsX2{
     top: 0%;
-    left:52%;
+    left:50.5%;
+}
+
+.mult2Ans{
+    visibility: hidden;
+    width:67px;
+    font-size:40px;
+    position:relative;
+    /* background-color: burlywood; */
+    letter-spacing:6px;
+    border-bottom:2px black solid;
+}
+
+.mult2Ansa{
+    top:0%;
+    left:48%;
+}
+
+.mult2Ansb{
+    top:0%;
+    left:47.5%;
+}
+
+.sub2Ans{
+    /* visibility: hidden; */
+    width:67px;
+    font-size:40px;
+    position:relative;
+    /* background-color: burlywood; */
+    letter-spacing:6px;
+    top:0%;
+    left:54.5%;
+
+}
+/* 3 digit dividend, 2 digit mult2 */
+.sub2AnsX2b{
+    top:0%;
+    left:48%;
 }
 .circleOptions{
     display:none;
