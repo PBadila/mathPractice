@@ -392,6 +392,7 @@ circleOption1.addEventListener('click', () =>{
         topAns.classList.add("topAnsX1");
         subAns.classList.remove("subAnsX2");
         multLine.classList.remove("multAnsX2");
+        mult2Ans.classList.add("mult2AnsX1a");
         if(b<100){
             subAns.classList.add("subAnsX1a");
             multLine.classList.add("multAnsX1a");
@@ -615,13 +616,16 @@ enterAns.addEventListener('click', ()=>{
 
             case 8:
                 console.log("ans = "+ans);
-                if( ans = topAns.textContent[1] * a ){
+                console.log("topAns.textContent[1] * a = " + topAns.textContent[1] * a);
+                if( ans = Number(topAns.textContent[1]) * a ){
                     console.log("correct");
-                    if (ans.toString().length == 1){
-                        mult2Ans.classList.add("mult2Ansa");
-                    }
-                    else{
-                        mult2Ans.classList.add("mult2Ansb");
+                    if(xFactor.toString().length==2){
+                        if (ans.toString().length == 1){
+                            mult2Ans.classList.add("mult2AnsX2a");
+                        }
+                        else{
+                            mult2Ans.classList.add("mult2AnsX2b");
+                        }
                     }
                 hintBox.innerText="";
                 hintBox.classList.add("affirm");
@@ -640,9 +644,24 @@ enterAns.addEventListener('click', ()=>{
                 let subNum = Number(mult2Ans.textContent.slice(1,mult2Ans.textContent.length));
                 console.log("subNum : "+subNum)
                 if(ans == Number(subAns.textContent) - subNum){
+                    if(xFactor.toString().length==1){
+                        sub2Ans.classList.add("sub2AnsX1a");
+                    }
                     console.log("Correct answer");
                     sub2Ans.innerText=ans;
+                    hintBox.innerText="";
+                    hintBox.classList.add("affirm");
+                    hintBox.innerText=  getAffirmation();
+                    if (xFactor.toString().length==1){
+                        //then we originally circled 1 digit and have another to bring down
+                        setTimeout(() => {
+                            changeStepandHint(ans);
+                        }, 1000);
+                    }else{
+                        //we're done - final answer
+                    }
                 }
+                
     }
 
 })
