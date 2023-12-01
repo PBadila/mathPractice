@@ -99,23 +99,26 @@ body{
     letter-spacing:6px;
    
 }
-.topAnsX1{
+/* dividend is 3 digits */
+.topAnsX1b{
   /* Goes over first number*/
     top:45%;
     left:47%;
 }
 
+/* dividend is 2 digits */
 .topAnsX1a{
     /* Goes over first number*/
       top:45%;
-      left:47%;
+      left:49%;
   }
-.topAnsX2{
+  /* dividend is 3 digits */
+.topAnsX2b{
     /* Goes over second number */
     /* top:15%; */
     left:51.5%;
 }
-
+/* dividend is 2 digits */
 .topAnsX2a{
     /* Goes over first number*/
       top:45%;
@@ -127,18 +130,21 @@ body{
     position:relative;
     display:flex;
     flex-direction: row;
+   
 }
 
 .multAns{
     font-size:40px;
-   
+    letter-spacing:6px;
     border-bottom:2px black solid;
+  
+    /* width:100px; */
   
 }
 
-.multAnsX1{
+.multAnsX1b{
     top: 30%;
-    left:45%;
+    left:44%;
 }
 
 .multAnsX1a{
@@ -146,10 +152,19 @@ body{
     left:47%;
 }
 
-.multAnsX2{
-    letter-spacing:6px;
+.multAnsX2b{
+   
     top: 30%;
     left:44%;
+    
+}
+
+.multAnsX2a{
+  
+    top: 30%;
+    left:47%;
+
+    width:90px;
     
 }
 
@@ -173,6 +188,12 @@ body{
 .bdArrow{
     visibility:hidden;
 }
+.bd2Arrow{
+    visibility:hidden;
+    position:relative;
+    right:-1170%;
+    /* background-color:pink; */
+}
 
 .subAns{
     font-size:40px;
@@ -182,21 +203,33 @@ body{
    
 }
 
-.subAnsX1{
+.subAnsX1b{
     top: 0%;
     left:47%;
 }
 
 .subAnsX1a{
     top: 0%;
-    left:49%;
+    left:50%;
 }
 
-.subAnsX2{
+.subAnsX2b{
+    top: 0%;
+    left:52%;
+}
+.subAnsX2a{
     top: 0%;
     left:52%;
 }
 
+.mult2Line{
+    /* background-color: cadetblue; */
+    position:relative;
+    display:flex;
+    flex-direction: row;
+   
+   
+}
 .mult2Ans{
     visibility: hidden;
     width:67px;
@@ -205,20 +238,40 @@ body{
     /* background-color: burlywood; */
     letter-spacing:6px;
     border-bottom:2px black solid;
+ 
 }
 
-.mult2AnsX1a{
+.mult2AnsX1a1{
+    top:0%;
+    left:49%;
+}
+.mult2AnsX1a2{
+    top:0%;
+    left:49%;
+}
+.mult2AnsX1b1{
+    top:0%;
+    left:44%;
+}
+.mult2AnsX1b2{
     top:0%;
     left:44%;
 }
 
-
-.mult2AnsX2a{
+.mult2AnsX2a1{
+    top:0%;
+    left:48%;
+}
+.mult2AnsX2a2{
     top:0%;
     left:48%;
 }
 
-.mult2AnsX2b{
+.mult2AnsX2b1{
+    top:0%;
+    left:53%;
+}
+.mult2AnsX2b2{
     top:0%;
     left:49%;
 }
@@ -230,19 +283,19 @@ body{
     position:relative;
     /* background-color: burlywood; */
     letter-spacing:6px;
-    top:0%;
-    left:56%;
+    top:-20%;
+   
 
 }
 
 .sub2AnsX1a{
     left:51%;
 }
-/* 3 digit dividend, 2 digit mult2 */
-/* .sub2AnsX2b{
-    top:0%;
-    left:51%;
-} */
+
+.sub2AnsX2b{
+  
+    left:56%;
+}
 .circleOptions{
     display:none;
     flex-direction: row;

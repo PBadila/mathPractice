@@ -30,6 +30,7 @@ let multLine = document.querySelector(".multLine");
 let bdArrow = document.querySelector(".bdArrow");
 let mult2Ans = document.querySelector(".mult2Ans");
 let sub2Ans = document.querySelector(".sub2Ans");
+let bd2Arrow = document.querySelector(".bd2Arrow");
 
 
 //variables
@@ -313,6 +314,45 @@ let changeStepandHint = (num) =>{
 
             step++
         break; 
+
+    case 10:
+        cClass.style.color="green";
+        dClass.style.color="black";
+        mClass.style.color="black";
+        sClass.style.color="black";
+        aClass.style.color="black";
+        bClass.style.color="black";
+        stepBox.innerText="STEP 5: CIRCLE - Back to CIRCLE. Circle what you are going to divide by "+ a+"."
+        stepBox.style.visibility="visible";
+        sub2Ans.style.color="orange";
+        step++
+   
+    setTimeout(() => {
+        cClass.style.color="black";
+        dClass.style.color="green";
+        mClass.style.color="black";
+        sClass.style.color="black";
+        aClass.style.color="black";
+        bClass.style.color="black";
+        stepBox.innerText="STEP 2: DIVIDE - Divide the number you circled "+ num+ " by "+ a + "."+"\nWrite the answer above the last digit in your circled number.";
+        stepBox.style.visibility="visible";
+        setTimeout(() => {
+            hintBox.classList.remove("affirm");
+            hintBox.innerText= "\n So how many "+a+"'s are in "+num+"?"+ " \n How many times can "+a+ " go into " + num+"?";
+            inputBox.style.display="flex";
+        }, 2000);
+        step++ 
+        let pic = getImages();
+        for(i=1;i<=num;i++){
+            console.log(i);
+            let img = document.createElement('img');
+            img.src=pic;
+            img.classList.add("icons")
+            img.style.borderColor=colorCheck(num,i);
+            iconBox.appendChild(img);
+        };
+    }, 2500);
+    break;
    
         
 
@@ -389,16 +429,22 @@ circleOption1.addEventListener('click', () =>{
     if(a<=Number(c[0])){
         xFactor=Number(x1);
         topAns.classList.remove("topAnsX2");
-        topAns.classList.add("topAnsX1");
+        // topAns.classList.add("topAnsX1");
         subAns.classList.remove("subAnsX2");
         multLine.classList.remove("multAnsX2");
-        mult2Ans.classList.add("mult2AnsX1a");
+      
         if(b<100){
+            topAns.classList.add("topAnsX1a");
             subAns.classList.add("subAnsX1a");
             multLine.classList.add("multAnsX1a");
+            sub2Ans.classList.add("sub2AnsX1a");
+            // mult2Ans.classList.add("mult2AnsX1a");
         }else{
-            subAns.classList.add("subAnsX1");
-            multLine.classList.add("multAnsX1");
+            topAns.classList.add("topAnsX1b");
+            subAns.classList.add("subAnsX1b");
+            multLine.classList.add("multAnsX1b");
+            sub2Ans.classList.add("sub2AnsX1b");
+            // mult2Ans.classList.add("mult2AnsX1b");
         }
         
         
@@ -431,17 +477,23 @@ circleOption2.addEventListener('click', () =>{
     if(a>Number(c[0])){
         xFactor=Number(x2);
         topAns.classList.remove("topAnsX1");
-        topAns.classList.add("topAnsX2");
+        // topAns.classList.add("topAnsX2");
         subAns.classList.remove("subAnsX1");
         multLine.classList.remove("multAnsX1");
-       
+       //dividend is 2 digits
         if(b<100){
             topAns.classList.add("topAnsX2a");
             subAns.classList.add("subAnsX2a");
             multLine.classList.add("multAnsX2a");
+            sub2Ans.classList.add("sub2AnsX2a");
+            // mult2Ans.classList.add("mult2AnsX2a");
         }else{
-            subAns.classList.add("subAnsX2");
-            multLine.classList.add("multAnsX2");
+            //dividend is 3 digits
+            topAns.classList.add("topAnsX2b");
+            subAns.classList.add("subAnsX2b");
+            multLine.classList.add("multAnsX2b");
+            sub2Ans.classList.add("sub2AnsX2b");
+            // mult2Ans.classList.add("mult2AnsX2b");
         }
         circleOptions.style.display="none";
         numCircled=Number(x2);
@@ -500,14 +552,15 @@ enterAns.addEventListener('click', ()=>{
             console.log("Multiply step answer: "+Math.floor((numCircled/a))*a);
             if(ans==Math.floor((numCircled/a))*a){
 
-                if(numCircled.toString().length ==2){
-                    console.log("its 2 digit so repositioning");
-                    if(ans.toString().length==1){
-                        multLine.classList.add("digitOne");
-                    }else{
-                        multLine.classList.add("digitTwo");
-                    }
-                }
+                // if(numCircled.toString().length ==2){
+                //     console.log("its 2 digit so repositioning");
+                //     // answer is one or two digits 
+                //     if(ans.toString().length==1){
+                //         multLine.classList.add("digitOne");
+                //     }else{
+                //         multLine.classList.add("digitTwo");
+                //     }
+                // }
 
                 console.log("correct");
                 multAns.innerText="-"+ans;
@@ -617,16 +670,59 @@ enterAns.addEventListener('click', ()=>{
             case 8:
                 console.log("ans = "+ans);
                 console.log("topAns.textContent[1] * a = " + topAns.textContent[1] * a);
-                if( ans = Number(topAns.textContent[1]) * a ){
+                if( ans == Number(topAns.textContent[1]) * a ){
                     console.log("correct");
-                    if(xFactor.toString().length==2){
-                        if (ans.toString().length == 1){
-                            mult2Ans.classList.add("mult2AnsX2a");
+                    //Dividend is 2 digits
+                    if (b<100){
+                        // if initially circled 1 digit
+                        if(xFactor.toString().length==1){
+                            //if answer is i digit
+                            if (ans.toString().length == 1){
+                                mult2Ans.classList.add("mult2AnsX1a1");
+                            }
+                            //answer is 2 digits
+                            else{
+                                mult2Ans.classList.add("mult2AnsX1a2");
+                            }
                         }
-                        else{
-                            mult2Ans.classList.add("mult2AnsX2b");
+                        //if initially circled 2 digits
+                        if(xFactor.toString().length==2){
+                            //answer is 1 digit
+                            if (ans.toString().length == 1){
+                                mult2Ans.classList.add("mult2AnsX2a1");
+                            }
+                            //answer is 2 digits
+                            else{
+                                mult2Ans.classList.add("mult2AnsX2a2");
+                            }
+                        }
+                    }else{
+                        //Dividend is 3 digits
+
+                        // if initially circled 1 digit
+                        if(xFactor.toString().length==1){
+                            //if answer is i digit
+                            if (ans.toString().length == 1){
+                                mult2Ans.classList.add("mult2AnsX1b1");
+                            }
+                            //answer is 2 digits
+                            else{
+                                mult2Ans.classList.add("mult2AnsX1b2");
+                            }
+                        }
+                        //if initially circled 2 digits
+                        if(xFactor.toString().length==2){
+                            //answer is 1 digit
+                            if (ans.toString().length == 1){
+                                mult2Ans.classList.add("mult2AnsX2b1");
+                            }
+                            //answer is 2 digits
+                            else{
+                                mult2Ans.classList.add("mult2AnsX2b2");
+                            }
                         }
                     }
+                    
                 hintBox.innerText="";
                 hintBox.classList.add("affirm");
                 hintBox.innerText=  getAffirmation();
@@ -643,6 +739,7 @@ enterAns.addEventListener('click', ()=>{
                 console.log(Number(subAns.textContent));
                 let subNum = Number(mult2Ans.textContent.slice(1,mult2Ans.textContent.length));
                 console.log("subNum : "+subNum)
+                //correct answer
                 if(ans == Number(subAns.textContent) - subNum){
                     if(xFactor.toString().length==1){
                         sub2Ans.classList.add("sub2AnsX1a");
@@ -660,6 +757,15 @@ enterAns.addEventListener('click', ()=>{
                     }else{
                         //we're done - final answer
                     }
+                }
+
+            case 10:
+                //last bring down if originally circled 1 digit
+                console.log("last bring down = " +ans)
+                if (ans == Number(d3.innerText) ){
+                    console.log("You got it right");
+                    bd2Arrow.style.visibility="visible";
+                    sub2Ans.textContent += ans;
                 }
                 
     }
